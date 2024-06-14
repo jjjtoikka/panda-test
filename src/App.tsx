@@ -1,9 +1,13 @@
-import { Container } from './components/container/index.tsx';
+import { css } from "@styled-system/css";
+import { Container } from "./components/container/index.tsx";
 
 function App() {
   return (
     <>
-      <Container styles={{ bg: 'primary', color: 'white' }}>Hei do</Container>
+      <Container styles={css.raw({ bg: "primary", color: "white" })}>
+        Hei do
+      </Container>
+      <Container css={{ bg: "pink", color: "yellow" }}>Hei do</Container>
     </>
   );
 }
