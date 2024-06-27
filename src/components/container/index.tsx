@@ -1,30 +1,23 @@
-import React, { forwardRef, Ref } from 'react';
+import React, { ElementType, forwardRef, Ref } from 'react';
 
-import { css } from '@styled-system/css';
-import { HTMLStyledProps, splitCssProps } from '@styled-system/jsx';
+import { css } from '@styled-system/css/css';
 import { SystemStyleObject } from '@styled-system/types/system-types';
 
 interface Props {
-  styles?: SystemStyleObject;
+  css?: SystemStyleObject;
   children?: React.ReactNode;
-  as?: React.ElementType;
+  as?: ElementType;
 }
 
-export const StyledContainer = (props: HTMLStyledProps<'div'>) => {
-  const [cssProps, restProps] = splitCssProps(props);
-  const { css: cssProp, ...styleProps } = cssProps;
-
-  const className = css(styleProps, cssProp);
-
-  return <div {...restProps} className={className} />;
-};
-
 export const Container = forwardRef(
-  ({ styles, children, as }: Props, ref?: Ref<HTMLDivElement>) => {
+  (
+    { css: cssProp, children, as: Tag = 'div' }: Props,
+    myRef?: Ref<HTMLElement>
+  ) => {
     return (
-      <StyledContainer {...styles} ref={ref}>
+      <Tag ref={myRef} className={cssProp ? css(cssProp) : undefined}>
         {children}
-      </StyledContainer>
+      </Tag>
     );
   }
 );

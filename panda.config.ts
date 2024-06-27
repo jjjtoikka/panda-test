@@ -1,4 +1,5 @@
 import { defineConfig, definePreset } from '@pandacss/dev';
+import pandaPreset from '@pandacss/preset-panda';
 
 const preset = definePreset({
   theme: {
@@ -6,6 +7,10 @@ const preset = definePreset({
       colors: {
         primary: { value: '#0070f3' },
         secondary: { value: '#f00' }
+      },
+      spacing: {
+        s: { value: '1rem' },
+        m: { value: '2rem' }
       }
     }
   }
@@ -13,13 +18,13 @@ const preset = definePreset({
 
 export default defineConfig({
   // Whether to use css reset
-  preflight: true,
+  // preflight: true,
   jsxFramework: 'react',
   importMap: '@styled-system',
   // Where to look for your css declarations
   include: ['./src/**/*.{ts,tsx}'],
   dependencies: ['./src/**/*.{ts,tsx}'],
-  presets: ['@pandacss/preset-panda', preset],
+  presets: [pandaPreset, preset],
 
   // Files to exclude
   exclude: [],
