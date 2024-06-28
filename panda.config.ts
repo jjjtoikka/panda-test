@@ -3,14 +3,17 @@ import pandaPreset from '@pandacss/preset-panda';
 
 const preset = definePreset({
   theme: {
-    tokens: {
-      colors: {
-        primary: { value: '#0070f3' },
-        secondary: { value: '#f00' }
-      },
-      spacing: {
-        s: { value: '1rem' },
-        m: { value: '2rem' }
+    extend: {
+      tokens: {
+        colors: {
+          primary: { value: '#0070f3' },
+          secondary: { value: '#f00' }
+        },
+        spacing: {
+          s: { value: '1rem' },
+          m: { value: '2rem' },
+          l: { value: '3rem' }
+        }
       }
     }
   }
@@ -18,17 +21,20 @@ const preset = definePreset({
 
 export default defineConfig({
   // Whether to use css reset
-  // preflight: true,
+  preflight: true,
   jsxFramework: 'react',
   importMap: '@styled-system',
   // Where to look for your css declarations
   include: ['./src/**/*.{ts,tsx}'],
-  dependencies: ['./src/**/*.{ts,tsx}'],
+  // dependencies: ['./src/**/*.{ts,tsx}'],
   presets: [pandaPreset, preset],
+  jsxStyleProps: 'all',
 
   // Files to exclude
   exclude: [],
-  watch: true,
+  watch: false,
+  minify: false,
+  strictTokens: true,
 
   // The output directory for your css system
   outdir: 'styled-system'
